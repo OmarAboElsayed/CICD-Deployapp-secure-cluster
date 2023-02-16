@@ -20,5 +20,5 @@ spec:
         name: coffeshop
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 81
         resources: {}
