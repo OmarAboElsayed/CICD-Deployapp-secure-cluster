@@ -15,7 +15,3 @@
 <img src="https://user-images.githubusercontent.com/92756055/219392008-f17168ba-c409-4b13-862f-3937ba6b03d0.jpeg"/>
 </div>
 
-## Result Votting
-<div>
-<img src="https://user-images.githubusercontent.com/92756055/211204436-761f16e7-ecb2-4cce-bc7a-9ccc244ed651.png"/>
-</div>
