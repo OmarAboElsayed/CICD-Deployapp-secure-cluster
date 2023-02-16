@@ -1,0 +1,47 @@
+
+ pipeline {
+     agent any
+
+
+     stages {
+         stage('ci') {
+             steps {
+            withCredentials([usernamePassword(credentialsId: 'git', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+
+                // Get some code from a GitHub repository
+                git 'https://github.com/OmarAboElsayed/cicd-coffeshopapp.git'
+                                                                }
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                sh "docker build . -f /var/jenkins_home/workspace/pipeline/cicd-coffeshopapp/Dockerfile -t ${USERNAME}/minia:v1"
+                
+                sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                sh "docker push ${USERNAME}/project:v1"
+
+}
+                 // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+             }
+
+
+         }
+         stage('cd'){
+         steps{
+          withCredentials([file(credentialsId: 'service', variable: 'config')]){
+                    
+                    sh "gcloud auth activate-service-account --key-file=${config}"
+                    sh "gcloud container clusters get-credentials mycluster --zone us-central1-a --project omar-mohamed-el-sayed-project"
+                   
+                          sh "kubectl apply -n jenkins -f /var/jenkins_home/workspace/pipline/Deployment/deploy.yaml"
+                          sh "kubectl apply -n jenkins -f /var/jenkins_home/workspace/pipline/Deployment/svc.yaml"
+                    
+                }
+
+
+             }
+
+         }
+     }
+}
+
+
+
