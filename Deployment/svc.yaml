@@ -2,18 +2,18 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: myservice
-  name: myservice
+    app: service
+  name: service
   namespace: jenkins
 spec:
   ports:
-  - name: bakehouseport
+  - name: coffeshopport
     port: 80
     protocol: TCP
     targetPort: 80
     nodePort: 30010
   selector:
-    app: bakehouse
+    app: coffeshop
   type: LoadBalancer
 status:
   loadBalancer: {}
