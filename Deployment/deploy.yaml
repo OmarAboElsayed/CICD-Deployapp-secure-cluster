@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: bakehouse
+    app: coffeshop
   namespace: jenkins
-  name: bakehouse
+  name: coffeshop
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bakehouse
+      app: coffeshop
   template:
     metadata:
       labels:
-        app: bakehouse
+        app: coffeshop
     spec:
       containers:
-      - image: omar20001/final-projects:v1
-        name: bakehouse
+      - image: omar20001/project:v1
+        name: coffeshop
         imagePullPolicy: Always
         ports:
         - containerPort: 80
