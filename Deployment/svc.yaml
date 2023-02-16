@@ -8,10 +8,10 @@ metadata:
 spec:
   ports:
   - name: coffeshopport
-    port: 80
+    port: 81
     protocol: TCP
-    targetPort: 80
-    nodePort: 30010
+    targetPort: 81
+    nodePort: 30011
   selector:
     app: coffeshop
   type: LoadBalancer
